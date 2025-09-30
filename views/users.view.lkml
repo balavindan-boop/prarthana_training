@@ -41,17 +41,9 @@ view: users {
     type: string
     sql: ${TABLE}.last_name ;;
   }
-  dimension: state {
-    type: string
-    sql: ${TABLE}.state ;;
-  }
-  dimension: zip {
-    type: zipcode
-    sql: ${TABLE}.zip ;;
-  }
   dimension: full_name {
     type: string
-    sql: CONCAT${first_name},' ' ,${last_name} ;;
+    sql: CONCAT(${first_name},' ' ,${last_name}) ;;
   }
   dimension: full_name_length {
     type: number
@@ -69,6 +61,14 @@ view: users {
     label: "Average User Age"
     sql: ${age} ;;
     value_format_name: decimal_2
+  }
+  dimension: state {
+    type: string
+    sql: ${TABLE}.state ;;
+  }
+  dimension: zip {
+    type: zipcode
+    sql: ${TABLE}.zip ;;
   }
   measure: count {
     type: count
